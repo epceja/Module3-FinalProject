@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.DecisionLogics;
 import templates.MessageTemplate;
 
@@ -14,22 +15,30 @@ import java.io.IOException;
 public class ServletDilemmaStage extends HttpServlet {
 
     private DecisionLogics decisionLogics = new DecisionLogics();
-    private String stageCounter;
-    private String namePlayer;
+    private String playerName;
+    private Integer attemptsCounter;
 
     public void init() {
         System.out.println("Dilemma stage servlet has begun...");
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+
+        playerName = (String) session.getAttribute("player-Name");
+        //session.setAttribute("player-Name", playerName);
+        request.setAttribute("name", playerName);
+
+        attemptsCounter = (Integer) session.getAttribute("attempts-Counter");
+        attemptsCounter++;
+        session.setAttribute("attempts-Counter", attemptsCounter);
+        request.setAttribute("counter", attemptsCounter);
+
         boolean choicePlayer = Boolean.parseBoolean(request.getParameter("choice-player"));
         MessageTemplate dilemmaStageTemplate = decisionLogics.workingPlayerChoice(choicePlayer);
-        namePlayer = "Temporal";
-        stageCounter = Integer.toString(decisionLogics.getStageCounter());
+        request.setAttribute("template", dilemmaStageTemplate);
+
         try {
-            request.setAttribute("template", dilemmaStageTemplate);
-            request.setAttribute("template2", namePlayer);
-            request.setAttribute("template3", stageCounter);
             request.getRequestDispatcher(dilemmaStageTemplate.getTargetJspFile()).forward(request, response);
         } catch (ServletException | IOException e) {
             throw new RuntimeException(e);

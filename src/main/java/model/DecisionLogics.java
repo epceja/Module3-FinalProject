@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class DecisionLogics {
 
-    private int stageCounter = 0;
+    private int stageCounter;
     private String keyOfMap = "0n";
     private Map<String, MessageTemplate> message = new HashMap<String, MessageTemplate>();
 
@@ -15,12 +15,6 @@ public class DecisionLogics {
     }
 
     public DecisionLogics(int stageCounter) {
-        this.stageCounter = stageCounter;
-    }
-
-    public DecisionLogics(String keyOfMap, Map<String, MessageTemplate> message, boolean playerChoice, int stageCounter) {
-        this.keyOfMap = keyOfMap;
-        this.message = message;
         this.stageCounter = stageCounter;
     }
 
@@ -72,11 +66,14 @@ public class DecisionLogics {
                     "¡Triunfaste! ... ¡Felicidades!",
                     "final-stage.jsp"));
         }
+
         // Validating if it reached final stage to reset counter
         if ( keyOfMap.contains("n") || keyOfMap.equals("3s") ) {
             stageCounter = 0;
         }
+        // Counter increment
         stageCounter ++;
+
         if (playerChoice) {
             keyOfMap = Integer.toString(stageCounter)+"s";
             return message.get(keyOfMap);

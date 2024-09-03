@@ -43,11 +43,11 @@
             <legend>Datos del Juego</legend>
             <h5>
                 <label>Nombre: </label>
-                <c:out value="${template2.playerName}"/>
+                <c:out value="${name}"/>
             </h5>
             <h5>
                 <label>Intentos: </label>
-                <c:out value="${template3.stageCounter}"/>
+                <c:out value="${counter}"/>
             </h5>
         </fieldset>
     </body>

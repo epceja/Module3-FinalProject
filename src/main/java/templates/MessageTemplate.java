@@ -8,19 +8,8 @@ public class MessageTemplate {
     private String yes;
     private String no;
     private String targetJspFile;
-    private boolean option;
 
     public MessageTemplate() {
-    }
-
-    public MessageTemplate(String title, String question, String legend, String yes, String no, String targetJspFile, boolean option) {
-        this.title = title;
-        this.question = question;
-        this.legend = legend;
-        this.yes = yes;
-        this.no = no;
-        this.targetJspFile = targetJspFile;
-        this.option = option;
     }
 
     public MessageTemplate(String title, String question, String legend, String yes, String no, String targetJspFile) {
@@ -85,14 +74,6 @@ public class MessageTemplate {
 
     public void setTargetJspFile(String targetJspFile) {
         this.targetJspFile = targetJspFile;
-    }
-
-    public boolean isOption() {
-        return option;
-    }
-
-    public void setOption(boolean option) {
-        this.option = option;
     }
 
     @Override

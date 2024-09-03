@@ -24,5 +24,17 @@
         <form method="GET" action="/final-project/index">
             <input type="submit" value="Regresar al Inicio"/>
         </form>
+        </br></br>
+        <fieldset name="datos-juego" id="datos-juego">
+            <legend>Datos del Juego</legend>
+            <h5>
+                <label>Nombre: </label>
+                <c:out value="${name}"/>
+            </h5>
+            <h5>
+                <label>Intentos: </label>
+                <c:out value="${counter}"/>
+            </h5>
+        </fieldset>
     </body>
 </html>
