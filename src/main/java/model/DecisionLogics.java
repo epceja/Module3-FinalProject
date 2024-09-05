@@ -14,12 +14,12 @@ public class DecisionLogics {
     public DecisionLogics() {
     }
 
-    public DecisionLogics(int stageCounter) {
+    void setStageCounter(int stageCounter) {
         this.stageCounter = stageCounter;
     }
 
-    public int getStageCounter() {
-        return stageCounter;
+    public void setKeyOfMap(String keyOfMap) {
+        this.keyOfMap = keyOfMap;
     }
 
     public MessageTemplate workingPlayerChoice(boolean playerChoice) {
@@ -73,11 +73,12 @@ public class DecisionLogics {
         }
         // Counter increment
         stageCounter ++;
-
+        // Validating when player accepts, player choice is true
         if (playerChoice) {
             keyOfMap = Integer.toString(stageCounter)+"s";
             return message.get(keyOfMap);
         }
+        // Validating when player refuse, player choice is false
         if ( !playerChoice ) {
             keyOfMap = Integer.toString(stageCounter)+"n";
             return message.get(keyOfMap);

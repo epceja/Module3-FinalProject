@@ -26,7 +26,7 @@ public class ServletDilemmaStage extends HttpServlet {
         HttpSession session = request.getSession();
 
         playerName = (String) session.getAttribute("player-Name");
-        //session.setAttribute("player-Name", playerName);
+        //session.setAttribute("player-Name", playerName);  // This only for reference
         request.setAttribute("name", playerName);
 
         attemptsCounter = (Integer) session.getAttribute("attempts-Counter");
